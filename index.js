@@ -1,7 +1,8 @@
 import './assets/css/global.css';
 import './assets/css/pokedex.css';
 
-const pokeApi = require('./assets/js/poke-api.js');
+import './assets/js/poke-api.js';
+const pokeModel = require('./assets/js/pokemon-model.js');
 
 function convertTypeToLi(pokemonType) {
   return pokemonType.map(

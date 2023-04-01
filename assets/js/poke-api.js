@@ -1,7 +1,18 @@
+import {Pokemon} from './pokemon-model.js';
+
 const pokeApi = {};
 
+function convertPokeDetailToPokeModel(pokeDetail) {
+  const pokemon = new Pokemon.;
+  pokemon.
+}
+
 pokeApi.getPokemonDetails = (pokemon) => {
-  return fetch(pokemon.url).then((response) => response.json());
+  return fetch(pokemon.url)
+    .then((response) => response.json())
+    .then((pokemon) => {
+      qwfwe;
+    });
 };
 
 pokeApi.getPokemons = (offset = 0, limit = 10) => {
