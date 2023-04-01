@@ -1,18 +1,25 @@
 import './assets/css/global.css';
 import './assets/css/pokedex.css';
 
+const pokeApi = require('./assets/js/poke-api.js');
+
+function convertTypeToLi(pokemonType) {
+  return pokemonType.map(
+    (typeSlot) => `<li class="type">${typeSlot.type.name}</li>`
+  );
+}
+
 function pokemonConvertToLi(pokemon) {
   return `
     <li class="pokemon">
-      <span class="number">#001</span>
+      <span class="number">#${pokemon.order}</span>
       <span class="name">${pokemon.name}</span>
 
       <div class="detail">
        <ol class="types">
-         <li class="type">Grass</li>
-         <li class="type">Poison</li>
+         ${convertTypeToLi(pokemon.types).join('')}
        </ol>
-       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+       <img src="${pokemon.sprites.other.dream_world.front_default}"
          alt="${pokemon.name}"
        />
       </div>
@@ -22,9 +29,6 @@ function pokemonConvertToLi(pokemon) {
 
 const pokemonList = document.getElementById('pokemonList');
 
-pokeApi.getPokemons().then((pokemons) => {
-  for (let i = 0; i < pokemons.length; i++) {
-    const pokemon = pokemons[i];
-    pokemonList.innerHTML += pokemonConvertToLi(pokemon);
-  }
+pokeApi.default.getPokemons().then((pokemons = []) => {
+  pokemonList.innerHTML += pokemons.map(pokemonConvertToLi).join('');
 });
