@@ -5,5 +5,3 @@ class Pokemon {
   types = [];
   photo;
 }
-
-export class Pokemon {}
